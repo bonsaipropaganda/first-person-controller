@@ -15,7 +15,6 @@ var mouse_sen = 0.4
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 func _ready():
-	# this makes the mouse invisble at the start and stuck inside the screen
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _input(event):
