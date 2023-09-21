@@ -1,11 +1,39 @@
-[gd_scene load_steps=7 format=3 uid="uid://ca4qk3u7403fh"]
+[gd_scene load_steps=8 format=3 uid="uid://ca4qk3u7403fh"]
 
 [ext_resource type="Script" path="res://code/player.gd" id="1_w1ys7"]
+[ext_resource type="PackedScene" uid="uid://cf4i133cdlerx" path="res://scenes/blaster_d_model.tscn" id="2_ahe42"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_htdn1"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_nwf7m"]
 height = 1.3
+
+[sub_resource type="Animation" id="Animation_mv5yv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera3D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_5oqaq"]
 resource_name = "jump_land"
@@ -33,33 +61,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector3(0, 0, 0), Vector3(0, 0.2, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_mv5yv"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Camera3D:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Camera3D:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_alkah"]
@@ -96,3 +97,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
 libraries = {
 "": SubResource("AnimationLibrary_alkah")
 }
+
+[node name="blasterD" parent="." instance=ExtResource("2_ahe42")]
