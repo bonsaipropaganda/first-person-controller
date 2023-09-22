@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dmjbwx441imv2"]
+
+[ext_resource type="PackedScene" uid="uid://cf4i133cdlerx" path="res://scenes/blaster_d_model.tscn" id="1_xbyoc"]
+
+[node name="Blaster" type="Node3D"]
+
+[node name="blasterD" parent="." instance=ExtResource("1_xbyoc")]
