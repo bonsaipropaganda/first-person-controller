@@ -9,6 +9,7 @@ extends CharacterBody3D
 @onready var crouch_shape = $CrouchShape
 @onready var ray_cast_3d = $RayCast3D
 @onready var animation_player = $Neck/Head/Eyes/AnimationPlayer
+@onready var blaster = $Neck/Head/Eyes/Blaster
 
 # state machine
 var free_looking = false
@@ -165,7 +166,12 @@ func _physics_process(delta):
 		velocity.y = JUMP_VELOCITY
 		sliding = false
 #		animation_player.play("jump_land")
-		
+	
+	# Shooting
+	if Input.is_action_pressed("shoot"):
+		blaster.shoot()
+	else:
+		blaster.stop_shooting()
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.

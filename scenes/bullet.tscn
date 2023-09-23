@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://b2wx4jl3dp6cb"]
+
+[ext_resource type="Script" path="res://code/bullet.gd" id="1_og38o"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_yhogp"]
+top_radius = 0.01
+bottom_radius = 0.01
+height = 3.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gcv4y"]
+albedo_color = Color(1, 0.733333, 0.388235, 1)
+
+[node name="Bullet" type="Node3D"]
+script = ExtResource("1_og38o")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.91069e-15, -4.37114e-08, 1, -1, -4.37114e-08, 0, 4.37114e-08, -1, -4.37114e-08, 0, 0, 0)
+mesh = SubResource("CylinderMesh_yhogp")
+surface_material_override/0 = SubResource("StandardMaterial3D_gcv4y")
