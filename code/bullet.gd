@@ -10,7 +10,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	position += transform.basis * Vector3(0, 0, speed) * delta
+	position += transform.basis * Vector3(0, 0, -speed) * delta
 	if coll_ray.is_colliding():
 		var collider = coll_ray.get_collider()
 		if collider.is_in_group("enemy"):

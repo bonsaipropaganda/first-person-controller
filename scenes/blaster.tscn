@@ -1,8 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://dmjbwx441imv2"]
+[gd_scene load_steps=7 format=3 uid="uid://dmjbwx441imv2"]
 
 [ext_resource type="Script" path="res://code/blaster.gd" id="1_htw71"]
 [ext_resource type="PackedScene" uid="uid://cf4i133cdlerx" path="res://scenes/blaster_d_model.tscn" id="1_xbyoc"]
-[ext_resource type="PackedScene" uid="uid://b2wx4jl3dp6cb" path="res://scenes/bullet.tscn" id="2_r82rk"]
 
 [sub_resource type="Animation" id="Animation_v4j8w"]
 length = 0.001
@@ -204,7 +203,6 @@ _data = {
 
 [node name="Blaster" type="Node3D"]
 script = ExtResource("1_htw71")
-bullet_scene = ExtResource("2_r82rk")
 
 [node name="blasterD" parent="." instance=ExtResource("1_xbyoc")]
 
@@ -216,13 +214,13 @@ light_indirect_energy = 5.0
 light_size = 0.1
 omni_range = 0.2
 
-[node name="GunBarrel" type="RayCast3D" parent="blasterD"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0687544, 0.416371)
-target_position = Vector3(0, 0, 0.01)
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_h71lf")
 }
+
+[node name="GunBarrel" type="RayCast3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 4.28677e-08, 0.0687544, 0.427548)
+target_position = Vector3(0, 0, -1)
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

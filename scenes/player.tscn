@@ -34,7 +34,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
 
 [node name="Camera3D" type="Camera3D" parent="Neck/Head/Eyes"]
 
-[node name="Blaster" parent="Neck/Head/Eyes" instance=ExtResource("2_8srsy")]
+[node name="Blaster" parent="Neck/Head/Eyes/Camera3D" instance=ExtResource("2_8srsy")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0.5, -0.4, -1)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]

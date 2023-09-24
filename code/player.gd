@@ -9,7 +9,11 @@ extends CharacterBody3D
 @onready var crouch_shape = $CrouchShape
 @onready var ray_cast_3d = $RayCast3D
 @onready var animation_player = $Neck/Head/Eyes/AnimationPlayer
-@onready var blaster = $Neck/Head/Eyes/Blaster
+@onready var blaster = $Neck/Head/Eyes/Camera3D/Blaster
+@onready var gun_flash = $Neck/Head/Eyes/Camera3D/Blaster.gun_flash
+@onready var bullet_scene = preload("res://scenes/bullet.tscn")
+@onready var gun_barrel = $Neck/Head/Eyes/Camera3D/Blaster.gun_barrel
+@onready var gun_anim = $Neck/Head/Eyes/Camera3D/Blaster.animation_player
 
 # state machine
 var free_looking = false
@@ -169,9 +173,9 @@ func _physics_process(delta):
 	
 	# Shooting
 	if Input.is_action_pressed("shoot"):
-		blaster.shoot()
+		shoot()
 	else:
-		blaster.stop_shooting()
+		stop_shooting()
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
@@ -196,3 +200,19 @@ func _physics_process(delta):
 		velocity.z = move_toward(velocity.z, 0, current_speed)
 
 	move_and_slide()
+
+
+func shoot():
+	await get_tree().create_timer(.3).timeout
+	if !gun_anim.is_playing():
+		gun_anim.play("shoot_2")
+		gun_flash.visible = true
+		var b = bullet_scene.instantiate()
+		b.position = gun_barrel.global_position
+		b.transform.basis = gun_barrel.global_transform.basis
+		get_parent().add_child(b)
+
+func stop_shooting():
+#	position = lerp(position, starting_position, 10 * get_process_delta_time())
+#	animation_player.stop()
+	gun_flash.visible = false
