@@ -3,9 +3,9 @@
 [ext_resource type="Script" path="res://code/bullet.gd" id="1_og38o"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_yhogp"]
-top_radius = 0.01
-bottom_radius = 0.01
-height = 3.0
+top_radius = 0.03
+bottom_radius = 0.03
+height = 0.1
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gcv4y"]
 albedo_color = Color(1, 0.733333, 0.388235, 1)
@@ -17,3 +17,12 @@ script = ExtResource("1_og38o")
 transform = Transform3D(1.91069e-15, -4.37114e-08, 1, -1, -4.37114e-08, 0, 4.37114e-08, -1, -4.37114e-08, 0, 0, 0)
 mesh = SubResource("CylinderMesh_yhogp")
 surface_material_override/0 = SubResource("StandardMaterial3D_gcv4y")
+
+[node name="CollRay" type="RayCast3D" parent="."]
+target_position = Vector3(0, 0, 1)
+
+[node name="KillTimer" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="KillTimer" to="." method="_on_kill_timer_timeout"]

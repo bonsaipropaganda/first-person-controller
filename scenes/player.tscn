@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://ca4qk3u7403fh"]
+[gd_scene load_steps=6 format=3 uid="uid://ca4qk3u7403fh"]
 
 [ext_resource type="Script" path="res://code/player.gd" id="1_w1ys7"]
 [ext_resource type="PackedScene" uid="uid://dmjbwx441imv2" path="res://scenes/blaster.tscn" id="2_8srsy"]
@@ -7,6 +7,8 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_nwf7m"]
 height = 1.3
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_l1rmc"]
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_w1ys7")
@@ -34,3 +36,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
 
 [node name="Blaster" parent="Neck/Head/Eyes" instance=ExtResource("2_8srsy")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0.5, -0.4, -1)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_l1rmc")
