@@ -1,9 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://bsyxtc7j6mkk8"]
+[gd_scene load_steps=14 format=3 uid="uid://bsyxtc7j6mkk8"]
 
 [ext_resource type="Texture2D" uid="uid://ceacthpx7vgw7" path="res://assets/textures/dev/grids/Dark/texture_07.png" id="1_iojoj"]
 [ext_resource type="Texture2D" uid="uid://y437rgef7vlx" path="res://assets/hdris/kloofendal_48d_partly_cloudy_puresky_2k.hdr" id="2_tm662"]
 [ext_resource type="PackedScene" uid="uid://ca4qk3u7403fh" path="res://scenes/player.tscn" id="4_4rayh"]
-[ext_resource type="PackedScene" uid="uid://csbrtuu1jgnp6" path="res://scenes/target.tscn" id="4_w1lbq"]
+[ext_resource type="PackedScene" uid="uid://d0v5bful0sv5f" path="res://assets/hotel scene/low_poly_hotel_scene.glb" id="5_0m601"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xpil4"]
 albedo_texture = ExtResource("1_iojoj")
@@ -21,20 +21,29 @@ sky = SubResource("Sky_hgy8f")
 tonemap_mode = 2
 glow_enabled = true
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_fpena"]
+size = Vector3(9.94503, 8.82096, 10.0188)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_e4nm8"]
+size = Vector3(0.775329, 8.82096, 3.86356)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_epsym"]
+size = Vector3(3.93832, 7.92154, 1.08548)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2g0j3"]
+size = Vector3(0.604498, 10.7675, 0.608073)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tetft"]
+size = Vector3(2.13916, 2.36752, 14.8755)
+
 [node name="World" type="Node3D"]
 
 [node name="Stage" type="Node3D" parent="."]
 
-[node name="CSGBox3D" type="CSGBox3D" parent="Stage"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
-use_collision = true
-size = Vector3(20, 1, 20)
-material = SubResource("StandardMaterial3D_xpil4")
-
 [node name="CSGBox3D2" type="CSGBox3D" parent="Stage"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.09718, -12.4849)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0613108, 0)
 use_collision = true
-size = Vector3(20, 1, 20)
+size = Vector3(33.546, 0.1, 32.994)
 material = SubResource("StandardMaterial3D_xpil4")
 
 [node name="Env" type="Node3D" parent="."]
@@ -44,25 +53,60 @@ environment = SubResource("Environment_woygg")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Env"]
 transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+light_energy = 0.0
+light_indirect_energy = 0.0
+light_volumetric_fog_energy = 0.0
 shadow_enabled = true
 
 [node name="Player" parent="." instance=ExtResource("4_4rayh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.76896, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.32622, 2.2339, 8.84683)
 
-[node name="Target" parent="." instance=ExtResource("4_w1lbq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.76638, 2.05128, -2.34693)
+[node name="low_poly_hotel_scene" parent="." instance=ExtResource("5_0m601")]
+transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 0, 0)
 
-[node name="Target2" parent="." instance=ExtResource("4_w1lbq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.4568, 2.05128, -2.34693)
+[node name="Staticbodies" type="Node3D" parent="."]
 
-[node name="Target3" parent="." instance=ExtResource("4_w1lbq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.43732, 2.05128, -2.34693)
+[node name="StaticBody3D" type="StaticBody3D" parent="Staticbodies"]
 
-[node name="Target4" parent="." instance=ExtResource("4_w1lbq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.062922, 2.05128, -2.34693)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Staticbodies/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00728369, 4.44783, 0)
+shape = SubResource("BoxShape3D_fpena")
 
-[node name="Target5" parent="." instance=ExtResource("4_w1lbq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.51602, 2.05128, -2.34693)
+[node name="StaticBody3D2" type="StaticBody3D" parent="Staticbodies"]
 
-[node name="Target6" parent="." instance=ExtResource("4_w1lbq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.28862, 2.05128, -2.34693)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Staticbodies/StaticBody3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.35441, 4.47745, 3.61688)
+shape = SubResource("BoxShape3D_e4nm8")
+
+[node name="StaticBody3D3" type="StaticBody3D" parent="Staticbodies"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Staticbodies/StaticBody3D3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0808821, 0, -5.14307)
+shape = SubResource("BoxShape3D_epsym")
+
+[node name="Pillar" type="StaticBody3D" parent="Staticbodies"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Staticbodies/Pillar"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.6115, 0, -8.34195)
+shape = SubResource("BoxShape3D_2g0j3")
+
+[node name="Pillar2" type="StaticBody3D" parent="Staticbodies"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.2215, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Staticbodies/Pillar2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.6115, 0, -8.34195)
+shape = SubResource("BoxShape3D_2g0j3")
+
+[node name="Garden" type="StaticBody3D" parent="Staticbodies"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.1317, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Staticbodies/Garden"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.247437, 0, 6.0704)
+shape = SubResource("BoxShape3D_tetft")
+
+[node name="Garden2" type="StaticBody3D" parent="Staticbodies"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.2146, 0, -11.4242)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Staticbodies/Garden2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.247437, 0, 6.0704)
+shape = SubResource("BoxShape3D_tetft")
