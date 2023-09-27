@@ -14,6 +14,9 @@ extends CharacterBody3D
 @onready var bullet_scene = preload("res://scenes/bullet.tscn")
 @onready var gun_barrel = $Neck/Head/Eyes/Camera3D/Blaster.gun_barrel
 @onready var gun_anim = $Neck/Head/Eyes/Camera3D/Blaster.animation_player
+@onready var aim_ray = $Neck/Head/Eyes/Camera3D/AimRay
+@onready var aim_ray_end = $Neck/Head/Eyes/Camera3D/AimRayEnd
+
 
 # state machine
 var free_looking = false
@@ -155,6 +158,11 @@ func _physics_process(delta):
 		
 		eyes.position.y = lerp(eyes.position.y, head_bobbing_vector.y*(head_bobbing_current_intensity/2),delta * lerp_speed)
 		eyes.position.x = lerp(eyes.position.x, head_bobbing_vector.x*head_bobbing_current_intensity,delta * lerp_speed)
+		
+		blaster.position.y = lerp(blaster.position.y, head_bobbing_vector.y*(head_bobbing_current_intensity/2),delta * lerp_speed)
+		blaster.position.x = lerp(blaster.position.x, head_bobbing_vector.x*head_bobbing_current_intensity,delta * lerp_speed)
+		blaster.position.y -= .05
+		blaster.position.x += .07
 	
 	else:
 		eyes.position.y = lerp(eyes.position.y, 0.0,delta * lerp_speed)
@@ -209,8 +217,11 @@ func shoot():
 		gun_flash.visible = true
 		var b = bullet_scene.instantiate()
 		b.position = gun_barrel.global_position
-		b.transform.basis = gun_barrel.global_transform.basis
 		get_parent().add_child(b)
+		if aim_ray.is_colliding():
+			b.set_velocity(aim_ray.get_collision_point())
+		else:
+			b.set_velocity(aim_ray_end.global_position)
 
 func stop_shooting():
 #	position = lerp(position, starting_position, 10 * get_process_delta_time())
