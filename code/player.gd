@@ -18,6 +18,7 @@ extends CharacterBody3D
 @onready var aim_ray_end = $Neck/Head/Eyes/Camera3D/AimRayEnd
 
 var start_pos: Vector3
+var start_transform_basis
 
 # state machine
 var free_looking = false
@@ -68,7 +69,13 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 func _ready():
 	start_pos = self.position
+	start_transform_basis = self.transform.basis
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	Global.game_over.connect(_on_game_over)
+
+func _on_game_over():
+	self.position = start_pos
+	self.transform.basis = start_transform_basis
 
 func _input(event):
 	# camera movement

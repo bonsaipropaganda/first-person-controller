@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://bsyxtc7j6mkk8"]
+[gd_scene load_steps=39 format=3 uid="uid://bsyxtc7j6mkk8"]
 
 [ext_resource type="Texture2D" uid="uid://y437rgef7vlx" path="res://assets/hdris/kloofendal_48d_partly_cloudy_puresky_2k.hdr" id="2_tm662"]
 [ext_resource type="Texture2D" uid="uid://b8w8uieep7nmd" path="res://assets/textures/dev/grids/Orange/texture_05.png" id="2_wox7n"]
@@ -6,7 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://d3yigw87tb4kx" path="res://scenes/start_target.tscn" id="4_ry5gn"]
 [ext_resource type="PackedScene" uid="uid://d0v5bful0sv5f" path="res://assets/hotel scene/low_poly_hotel_scene.glb" id="5_0m601"]
 [ext_resource type="Script" path="res://scenes/TimeLabel.gd" id="5_3l50w"]
+[ext_resource type="Script" path="res://scenes/Menu.gd" id="5_k5deu"]
 [ext_resource type="Script" path="res://code/target_spawner.gd" id="6_n00n0"]
+[ext_resource type="Script" path="res://code/targetslabel.gd" id="7_pprop"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_sqac4"]
 panorama = ExtResource("2_tm662")
@@ -41,6 +43,18 @@ size = Vector3(3.93832, 7.92154, 1.08548)
 [sub_resource type="BoxShape3D" id="BoxShape3D_2g0j3"]
 size = Vector3(0.604498, 10.7675, 0.608073)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_81jkt"]
+size = Vector3(11.9528, 1.33897, 14.9094)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rllmf"]
+size = Vector3(4.05458, 1.41022, 0.676697)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_72au0"]
+size = Vector3(7.57976, 3.27003, 0.575396)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mc2t0"]
+size = Vector3(7.29597, 1.4208, 4.0184)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_tetft"]
 size = Vector3(2.13916, 2.36752, 14.8755)
 
@@ -62,12 +76,115 @@ size = Vector3(1.56404, 1, 0.354328)
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_fofas"]
 radius = 0.509458
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tpxpv"]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_t517c"]
 radius = 1.32199
-height = 4.0537
+height = 4.95534
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_j001h"]
+radius = 1.04787
+height = 5.30676
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_p5jc8"]
+radius = 1.32199
+height = 5.46784
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_f7ojd"]
+radius = 1.32199
+height = 5.21569
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0egrx"]
 size = Vector3(33.8508, 16.1086, 1)
+
+[sub_resource type="Animation" id="Animation_i2b7s"]
+resource_name = "game_over"
+length = 5.0
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TimeLabel:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(12, -0.25, 0, 0.25, 0, 493, -0.25, 0, 0.25, 0, 12, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 2.6, 5)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TimeLabel:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(8, -0.25, 0, 0.25, 0, 305.5, -0.25, 0, 0.25, 0, 8, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 2.6, 5)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TimeLabel:theme_override_font_sizes/font_size")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(24, -0.25, 0, 0.25, 0, 46, -0.25, 0, 0.25, 0, 24, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 2.6, 5)
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("TargetsLabel:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.7, 1.4, 2.1, 2.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false, true]
+}
+
+[sub_resource type="Animation" id="Animation_12tke"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TimeLabel:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(12, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TimeLabel:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(8, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TimeLabel:theme_override_font_sizes/font_size")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(24, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ur6i0"]
+_data = {
+"RESET": SubResource("Animation_12tke"),
+"game_over": SubResource("Animation_i2b7s")
+}
 
 [node name="World" type="Node3D"]
 
@@ -118,6 +235,12 @@ use_collision = true
 size = Vector3(14.2331, 0.527335, 1.91077)
 material = SubResource("StandardMaterial3D_myxnj")
 
+[node name="CSGBox3D14" type="CSGBox3D" parent="Stage/Obstacles"]
+transform = Transform3D(0.810757, 0, -0.585382, 0, 1, 0, 0.585382, 0, 0.810757, -9.80313, 2.1169, -10.2066)
+use_collision = true
+size = Vector3(18.4221, 0.527335, 1.91077)
+material = SubResource("StandardMaterial3D_myxnj")
+
 [node name="CSGBox3D2" type="CSGBox3D" parent="Stage/Obstacles"]
 transform = Transform3D(-0.907654, 0.0473912, 0.417035, -0.0074087, 0.991641, -0.128813, -0.419654, -0.120007, -0.899716, 6.24299, 3.29623, -3.76057)
 use_collision = true
@@ -154,10 +277,22 @@ use_collision = true
 size = Vector3(2.51607, 5.00959, 0.64448)
 material = SubResource("StandardMaterial3D_myxnj")
 
-[node name="CSGBox3D8" type="CSGBox3D" parent="Stage/Obstacles"]
-transform = Transform3D(0.583653, -0.805694, -0.101027, -0.3777, -0.379512, 0.844579, -0.718813, -0.454783, -0.525814, -8.52564, 0.531052, 11.2054)
+[node name="CSGBox3D16" type="CSGBox3D" parent="Stage/Obstacles"]
+transform = Transform3D(0.94436, 0.327266, 0.0329021, -0.023889, -0.0315229, 0.999218, 0.328047, -0.944406, -0.021951, 1.29307, 8.94574, -6.97663)
 use_collision = true
-size = Vector3(2.51607, 5.00959, 0.64448)
+size = Vector3(2.51607, 5.51232, 0.64448)
+material = SubResource("StandardMaterial3D_myxnj")
+
+[node name="CSGBox3D19" type="CSGBox3D" parent="Stage/Obstacles"]
+transform = Transform3D(-0.418569, 0.90653, 0.0548089, -0.833252, -0.407338, 0.373853, 0.361235, 0.110814, 0.925867, -5.39782, 8.94574, -9.03925)
+use_collision = true
+size = Vector3(2.51607, 5.51232, 0.64448)
+material = SubResource("StandardMaterial3D_myxnj")
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="Stage/Obstacles"]
+transform = Transform3D(0.089531, 0.992135, 0.0874766, 0.145983, -0.0999529, 0.984225, 0.985228, -0.0753485, -0.153784, -9.24804, 2.47524, 6.42987)
+use_collision = true
+size = Vector3(2.51607, 18.1139, 0.64448)
 material = SubResource("StandardMaterial3D_myxnj")
 
 [node name="CSGBox3D9" type="CSGBox3D" parent="Stage/Obstacles"]
@@ -166,16 +301,52 @@ use_collision = true
 size = Vector3(2.51607, 5.00959, 0.64448)
 material = SubResource("StandardMaterial3D_myxnj")
 
+[node name="CSGBox3D13" type="CSGBox3D" parent="Stage/Obstacles"]
+transform = Transform3D(0.331826, -0.890205, -0.312131, 0.162164, -0.272124, 0.9485, -0.929298, -0.365354, 0.0540613, 2.7289, 5.98598, 15.7151)
+use_collision = true
+size = Vector3(2.51607, 2.34863, 0.64448)
+material = SubResource("StandardMaterial3D_myxnj")
+
+[node name="CSGBox3D20" type="CSGBox3D" parent="Stage/Obstacles"]
+transform = Transform3D(-0.0659031, 0.0200092, -0.997625, 0.363404, -0.930654, -0.0426726, -0.929298, -0.365354, 0.0540613, 2.7289, 2.65145, 6.92467)
+use_collision = true
+size = Vector3(4.20645, 6.12179, 0.581388)
+material = SubResource("StandardMaterial3D_myxnj")
+
+[node name="CSGBox3D18" type="CSGBox3D" parent="Stage/Obstacles"]
+transform = Transform3D(0.369332, -0.919175, 0.13679, -0.000284729, 0.147085, 0.989124, -0.929298, -0.365354, 0.0540613, 0.752699, 7.9145, 5.65202)
+use_collision = true
+size = Vector3(2.51607, 2.34863, 0.64448)
+material = SubResource("StandardMaterial3D_myxnj")
+
 [node name="CSGBox3D10" type="CSGBox3D" parent="Stage/Obstacles"]
-transform = Transform3D(0.940309, -0.162346, -0.299103, 0.315714, 0.0879993, 0.944765, -0.127058, -0.982802, 0.134001, 4.08565, 6.84785, 7.0915)
+transform = Transform3D(0.991894, -0.127065, -2.46325e-08, 1.98446e-08, -3.89471e-08, 1, -0.127065, -0.991894, -3.61099e-08, 4.08565, 6.84785, 7.0915)
 use_collision = true
 size = Vector3(2.29512, 20.424, 0.282444)
+material = SubResource("StandardMaterial3D_myxnj")
+
+[node name="CSGBox3D12" type="CSGBox3D" parent="Stage/Obstacles"]
+transform = Transform3D(0.632165, 0.774834, -3.38691e-08, 0, -4.37114e-08, -1, -0.774834, 0.632164, -2.76328e-08, 2.83718, 8.69641, 10.7746)
+use_collision = true
+size = Vector3(2.29512, 13.393, 0.282444)
 material = SubResource("StandardMaterial3D_myxnj")
 
 [node name="CSGBox3D11" type="CSGBox3D" parent="Stage/Obstacles"]
 transform = Transform3D(-4.37114e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, -4.37114e-08, 1.91069e-15, -5.15179, 1.8052, 16.8296)
 use_collision = true
-size = Vector3(5.41228, 28.9399, 0.282444)
+size = Vector3(3.97284, 28.9399, 0.282444)
+material = SubResource("StandardMaterial3D_myxnj")
+
+[node name="CSGBox3D15" type="CSGBox3D" parent="Stage/Obstacles"]
+transform = Transform3D(0.999614, -0.0219061, 0.0171206, 0.0228141, 0.998238, -0.0547742, -0.0158904, 0.0551435, 0.998352, -3.8705, 0.507014, 19.9288)
+use_collision = true
+size = Vector3(5.28167, 5.334, 1.01516)
+material = SubResource("StandardMaterial3D_myxnj")
+
+[node name="CSGBox3D17" type="CSGBox3D" parent="Stage/Obstacles"]
+transform = Transform3D(0.999614, -0.0219061, 0.0171206, -0.00463082, 0.475999, 0.879433, -0.0274142, -0.879173, 0.475713, -13.112, 0.507014, 19.9288)
+use_collision = true
+size = Vector3(5.28167, 2.60668, 1.01516)
 material = SubResource("StandardMaterial3D_myxnj")
 
 [node name="Env" type="Node3D" parent="."]
@@ -209,6 +380,22 @@ shape = SubResource("BoxShape3D_2g0j3")
 [node name="Pillar2" type="CollisionShape3D" parent="Staticbodies/Hotel"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.61, 0, -8.34195)
 shape = SubResource("BoxShape3D_2g0j3")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Staticbodies/Hotel"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.25224, -1.56314)
+shape = SubResource("BoxShape3D_81jkt")
+
+[node name="Sign" type="CollisionShape3D" parent="Staticbodies/Hotel"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.220918, 7.69292, -8.33558)
+shape = SubResource("BoxShape3D_rllmf")
+
+[node name="Sign2" type="CollisionShape3D" parent="Staticbodies/Hotel"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.2504, 8.60298, -2.10379)
+shape = SubResource("BoxShape3D_72au0")
+
+[node name="Roof" type="CollisionShape3D" parent="Staticbodies/Hotel"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10.7671, -1.63744)
+shape = SubResource("BoxShape3D_mc2t0")
 
 [node name="Garden" type="StaticBody3D" parent="Staticbodies"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.1317, 0, 0)
@@ -294,8 +481,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0276661, 0, 0)
 shape = SubResource("CylinderShape3D_fofas")
 
 [node name="Leaves" type="CollisionShape3D" parent="Staticbodies/Tree"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0949097, 2.23842, 0)
-shape = SubResource("CapsuleShape3D_tpxpv")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0949097, 2.78035, 0)
+shape = SubResource("CapsuleShape3D_t517c")
 
 [node name="Tree2" type="StaticBody3D" parent="Staticbodies"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.0041, 2.1538, -3.80013)
@@ -306,7 +493,7 @@ shape = SubResource("CylinderShape3D_fofas")
 
 [node name="Leaves" type="CollisionShape3D" parent="Staticbodies/Tree2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0949097, 2.23842, 0)
-shape = SubResource("CapsuleShape3D_tpxpv")
+shape = SubResource("CapsuleShape3D_j001h")
 
 [node name="Tree3" type="StaticBody3D" parent="Staticbodies"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.0041, 2.1538, -7.08105)
@@ -316,8 +503,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0276661, 0, 0)
 shape = SubResource("CylinderShape3D_fofas")
 
 [node name="Leaves" type="CollisionShape3D" parent="Staticbodies/Tree3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0949097, 2.23842, 0)
-shape = SubResource("CapsuleShape3D_tpxpv")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0949097, 3.20124, 0)
+shape = SubResource("CapsuleShape3D_p5jc8")
 
 [node name="Tree4" type="StaticBody3D" parent="Staticbodies"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.0041, 2.1538, -10.3963)
@@ -327,22 +514,22 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0276661, 0, 0)
 shape = SubResource("CylinderShape3D_fofas")
 
 [node name="Leaves" type="CollisionShape3D" parent="Staticbodies/Tree4"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0949097, 2.23842, 0)
-shape = SubResource("CapsuleShape3D_tpxpv")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0949097, 2.87337, 0)
+shape = SubResource("CapsuleShape3D_f7ojd")
 
 [node name="Tree5" type="StaticBody3D" parent="Staticbodies"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.3138, 2.1538, 11.0495)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.2204, 2.1538, 10.9825)
 
 [node name="Trunk" type="CollisionShape3D" parent="Staticbodies/Tree5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0276661, 0, 0)
 shape = SubResource("CylinderShape3D_fofas")
 
 [node name="Leaves" type="CollisionShape3D" parent="Staticbodies/Tree5"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0949097, 2.23842, 0)
-shape = SubResource("CapsuleShape3D_tpxpv")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0949097, 2.78035, 0)
+shape = SubResource("CapsuleShape3D_t517c")
 
 [node name="Tree6" type="StaticBody3D" parent="Staticbodies"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.3138, 2.1538, 7.59831)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.2204, 2.1538, 7.53132)
 
 [node name="Trunk" type="CollisionShape3D" parent="Staticbodies/Tree6"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0276661, 0, 0)
@@ -350,29 +537,29 @@ shape = SubResource("CylinderShape3D_fofas")
 
 [node name="Leaves" type="CollisionShape3D" parent="Staticbodies/Tree6"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0949097, 2.23842, 0)
-shape = SubResource("CapsuleShape3D_tpxpv")
+shape = SubResource("CapsuleShape3D_j001h")
 
 [node name="Tree7" type="StaticBody3D" parent="Staticbodies"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.3138, 2.1538, 4.31738)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.2204, 2.1538, 4.2504)
 
 [node name="Trunk" type="CollisionShape3D" parent="Staticbodies/Tree7"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0276661, 0, 0)
 shape = SubResource("CylinderShape3D_fofas")
 
 [node name="Leaves" type="CollisionShape3D" parent="Staticbodies/Tree7"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0949097, 2.23842, 0)
-shape = SubResource("CapsuleShape3D_tpxpv")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0949097, 3.20124, 0)
+shape = SubResource("CapsuleShape3D_p5jc8")
 
 [node name="Tree8" type="StaticBody3D" parent="Staticbodies"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.3138, 2.1538, 1.00213)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.2204, 2.1538, 0.935151)
 
 [node name="Trunk" type="CollisionShape3D" parent="Staticbodies/Tree8"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0276661, 0, 0)
 shape = SubResource("CylinderShape3D_fofas")
 
 [node name="Leaves" type="CollisionShape3D" parent="Staticbodies/Tree8"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0949097, 2.23842, 0)
-shape = SubResource("CapsuleShape3D_tpxpv")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0949097, 2.87337, 0)
+shape = SubResource("CapsuleShape3D_f7ojd")
 
 [node name="Barrier" type="StaticBody3D" parent="Staticbodies"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -29.9879)
@@ -382,36 +569,86 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.0026, 0)
 shape = SubResource("BoxShape3D_0egrx")
 
 [node name="Menu" type="Node3D" parent="."]
+script = ExtResource("5_k5deu")
 
-[node name="StartTarget" parent="Menu" instance=ExtResource("4_ry5gn")]
+[node name="StartMarker" type="Marker3D" parent="Menu"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 2.72279, -21.9397)
+
+[node name="StartTarget" parent="Menu/StartMarker" instance=ExtResource("4_ry5gn")]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="TimeLabel" type="Label" parent="CanvasLayer"]
-offset_left = 12.0
-offset_top = 8.0
-offset_right = 52.0
-offset_bottom = 45.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -564.0
+offset_top = -316.0
+offset_right = -248.0
+offset_bottom = -249.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_font_sizes/font_size = 24
-text = "0.0"
+text = "Total time: 0.0"
 script = ExtResource("5_3l50w")
 
 [node name="Timer" type="Timer" parent="CanvasLayer"]
 wait_time = 0.1
 
+[node name="TargetsLabel" type="Label" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 393.0
+offset_top = -316.0
+offset_right = 565.0
+offset_bottom = -279.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 24
+text = "Targets left: 10"
+script = ExtResource("7_pprop")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer"]
+libraries = {
+"": SubResource("AnimationLibrary_ur6i0")
+}
+
 [node name="TargetSpawners" type="Node3D" parent="."]
 script = ExtResource("6_n00n0")
 
 [node name="SpawnPoint" type="Marker3D" parent="TargetSpawners"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.1714, 2.90095, -16.6234)
-
-[node name="SpawnPoint3" type="Marker3D" parent="TargetSpawners"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.2134, 1.04851, -8.36822)
+transform = Transform3D(-0.970292, 0, 0.241939, 0, 1, 0, -0.241939, 0, -0.970292, 10.1714, 2.90095, -16.6234)
 
 [node name="SpawnPoint2" type="Marker3D" parent="TargetSpawners"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 370.171, 2.90095, 517.148)
+transform = Transform3D(-0.970292, 0, 0.241939, 0, 1, 0, -0.241939, 0, -0.970292, -3.81345, 1.049, 6.38596)
 
-[connection signal="start_game" from="Menu/StartTarget" to="CanvasLayer/TimeLabel" method="_on_start_target_start_game"]
-[connection signal="start_game" from="Menu/StartTarget" to="TargetSpawners" method="_on_start_target_start_game"]
+[node name="SpawnPoint3" type="Marker3D" parent="TargetSpawners"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.0131, 1.04851, -6.96587)
+
+[node name="SpawnPoint4" type="Marker3D" parent="TargetSpawners"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.278395, 3.96328, 6.93785)
+
+[node name="SpawnPoint5" type="Marker3D" parent="TargetSpawners"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.94668, 0.721636, 21.585)
+
+[node name="SpawnPoint10" type="Marker3D" parent="TargetSpawners"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.3626, 0.721636, 21.585)
+
+[node name="SpawnPoint6" type="Marker3D" parent="TargetSpawners"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.612241, 10.9298, 0.907846)
+
+[node name="SpawnPoint7" type="Marker3D" parent="TargetSpawners"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.33408, 7.72883, -5.45173)
+
+[node name="SpawnPoint8" type="Marker3D" parent="TargetSpawners"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.41784, 7.72883, -0.969307)
+
+[node name="SpawnPoint9" type="Marker3D" parent="TargetSpawners"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.1617, 1.1667, 15.6602)
+
 [connection signal="timeout" from="CanvasLayer/Timer" to="CanvasLayer/TimeLabel" method="_on_timer_timeout"]
