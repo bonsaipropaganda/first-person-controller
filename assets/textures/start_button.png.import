@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b8w8uieep7nmd"
-path.s3tc="res://.godot/imported/texture_05.png-fc818d3f2c3ac681a210534b35ad90a3.s3tc.ctex"
+uid="uid://x4ny0xje4t63"
+path.s3tc="res://.godot/imported/start_button.png-8d04a7eba3b7d88624c8d764bb407749.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/textures/dev/grids/Orange/texture_05.png"
-dest_files=["res://.godot/imported/texture_05.png-fc818d3f2c3ac681a210534b35ad90a3.s3tc.ctex"]
+source_file="res://assets/textures/start_button.png"
+dest_files=["res://.godot/imported/start_button.png-8d04a7eba3b7d88624c8d764bb407749.s3tc.ctex"]
 
 [params]
 

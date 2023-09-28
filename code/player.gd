@@ -17,6 +17,7 @@ extends CharacterBody3D
 @onready var aim_ray = $Neck/Head/Eyes/Camera3D/AimRay
 @onready var aim_ray_end = $Neck/Head/Eyes/Camera3D/AimRayEnd
 
+var start_pos: Vector3
 
 # state machine
 var free_looking = false
@@ -32,7 +33,7 @@ var air_lerp_speed = 2.0
 const walk_speed = 5.0
 const sprint_speed = 8.0
 const crouch_speed = 3.0
-const slide_speed = 7.7
+const slide_speed = 8
 
 # head bobbing vars
 const head_bobbing_sprinting_speed = 22
@@ -55,7 +56,7 @@ var slide_vector = Vector2.ZERO
 # Input
 var mouse_sen = 0.4
 var direction = Vector3.ZERO
-const JUMP_VELOCITY = 4.5
+const JUMP_VELOCITY = 5.5
 
 # camera/head height
 var crouch_height = -0.5
@@ -66,6 +67,7 @@ var free_look_tilt = .1
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 func _ready():
+	start_pos = self.position
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _input(event):
@@ -83,6 +85,8 @@ func _input(event):
 func _physics_process(delta):
 	# getting input from player to see where we headed bro
 	var input_dir = Input.get_vector("left", "right", "forward", "backward")
+	if Global.game_started == false:
+		input_dir = Vector2.ZERO
 	
 	# release the mouse
 	if Input.is_action_just_pressed("escape"):
