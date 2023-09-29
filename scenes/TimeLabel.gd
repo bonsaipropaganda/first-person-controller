@@ -25,4 +25,5 @@ func _on_start_game():
 
 func _on_game_over():
 	timer.stop()
+	Global.total_time = time_played
 	anim.play("game_over")

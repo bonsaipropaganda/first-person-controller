@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://d3yigw87tb4kx"]
+[gd_scene load_steps=8 format=3 uid="uid://d3yigw87tb4kx"]
 
 [ext_resource type="PackedScene" uid="uid://csbrtuu1jgnp6" path="res://scenes/target.tscn" id="1_e44c6"]
 [ext_resource type="Script" path="res://code/start_target.gd" id="2_vghav"]
 [ext_resource type="Texture2D" uid="uid://x4ny0xje4t63" path="res://assets/textures/start_button.png" id="3_ka0q4"]
+[ext_resource type="Texture2D" uid="uid://f66leyppisot" path="res://scenes/Untitled.png" id="4_4egxr"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1777w"]
 albedo_color = Color(1, 0.219608, 0.0313726, 1)
@@ -22,5 +23,9 @@ mesh = SubResource("CylinderMesh_uranu")
 surface_material_override/0 = SubResource("StandardMaterial3D_mck1g")
 
 [node name="Sprite3D" type="Sprite3D" parent="." index="2"]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 2.00103, 0, 0)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.00102997, 0.647073, -0.154701)
 texture = ExtResource("3_ka0q4")
+
+[node name="Sprite3D2" type="Sprite3D" parent="." index="3"]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -6.90952, 0.00378561, -2.68414)
+texture = ExtResource("4_4egxr")
